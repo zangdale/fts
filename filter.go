@@ -16,6 +16,9 @@ func loadFilter(tokens []string) []string {
 
 	var res = tokens
 	for _, f := range filterFuncs {
+		if res == nil {
+			return res
+		}
 		res = f(res)
 	}
 	return res
@@ -24,6 +27,19 @@ func loadFilter(tokens []string) []string {
 // AddFilter add filter function
 func AddFilter(f ...FilterFunc) {
 	filterFuncs = append(filterFuncs, f...)
+}
+
+// TrimSpaceFilter returns a slice of no Space.
+var TrimSpaceFilter = func(tokens []string) []string {
+	r := make([]string, 0, len(tokens))
+	for _, token := range tokens {
+		token = strings.TrimSpace(token)
+		if len(token) == 0 {
+			continue
+		}
+		r = append(r, token)
+	}
+	return r
 }
 
 // lowercaseFilter returns a slice of tokens normalized to lower case.

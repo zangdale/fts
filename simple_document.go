@@ -3,7 +3,7 @@ package fts
 
 type SimpleDocument struct {
 	Text   string
-	ID     uint64
+	id     uint64
 	Action func()
 }
 
@@ -12,5 +12,10 @@ func (d *SimpleDocument) GetText() string {
 }
 
 func (d *SimpleDocument) GetID() uint64 {
-	return d.ID
+	return d.id
+}
+
+func (d *SimpleDocument) setID(id uint64) {
+	d.id = id
+	return
 }
