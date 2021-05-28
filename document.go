@@ -18,7 +18,7 @@ func init() {
 type Document interface {
 	GetText() string
 	GetID() uint64
-	setID(uint64)
+	SetID(uint64)
 }
 
 var _ Document = (*SimpleDocument)(nil)
@@ -63,7 +63,7 @@ var indexDocuments index
 func DocumentAdd(docs []Document) {
 	len := len(documents)
 	for i := range docs {
-		docs[i].setID(uint64(len + i))
+		docs[i].SetID(uint64(len + i))
 		documents = append(documents, docs[i])
 	}
 

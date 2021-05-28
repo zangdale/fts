@@ -27,13 +27,13 @@ func TestSimpleDocument(t *testing.T) {
 	// AddFilter(TrimSpaceFilter)
 
 	// TODO: 中文叠词错误,会匹配 [看看看么,看看]
-	ds, err := DocumentSearch("看看看看")
+	ds, err := DocumentSearch("看看")
 	if err != nil {
 		t.Fatal("DocumentSearch", err)
 	}
 	for _, d := range ds {
 		s := d.(*SimpleDocument)
-		s.Action()
+		t.Log(s.GetText())
 	}
 
 }
@@ -43,11 +43,6 @@ func sliceStrToSimpleDocument(slicesStrs []string) []Document {
 	for i, v := range slicesStrs {
 		res[i] = &SimpleDocument{
 			Text: v,
-			Action: func(text string) func() {
-				return func() {
-					println(text)
-				}
-			}(v),
 		}
 	}
 	return res
