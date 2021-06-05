@@ -6,6 +6,9 @@ Simple Full-Text Search engine
 - 支持中文/英文, 暂不支持混合查询
 - 支持个性拓展
 - 自定义过滤条件
+## 文档
+[github.com/getbuguai/fts](https://pkg.go.dev/github.com/getbuguai/fts)
+
 
 ## 安装
 
